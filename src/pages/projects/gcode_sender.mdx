@@ -1,0 +1,62 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "gcode sender"
+pubDate: 2023-03-18
+description: "touchscreen interface controller running on FreeRTOS for GRBL-based CNC
+machines."
+author: "relyq"
+tags: ["projects", "electronics", "embedded", "rtos"]
+---
+
+import "./style.css";
+
+this is a device with a touchscreen interface to control grbl-based cnc machines.
+in mid 2021 i was asked by a factory to make them a cnc machine with a controller to just run one program. later on after finishing the machine i continued developing the firmware and added features to make it a more versatile and commercially viable product.
+
+this was my first project using freertos, which made development faster and simpler and it was fairly easy to learn as it took me just a few weeks to get used to it.
+
+it made me learn about concepts like multithreading, scheduling, tasks & priorities, and rtos structures such as queues, shared resources, semaphores, mutexes, etc.
+
+i also learned about interfacing with SD cards, filesystems, and file explorer paging.
+
+the main features are:
+
+- main menu with buttons to perform a homing routine, set zero, go to zero, probe
+- moving menu to control the three axes
+- file explorer with multiple pages to load files from an SD card.
+- receives and parses machine messages to get current position and stop the program if any errors or alerts are thrown.
+
+<div class="row">
+  <div class="column">
+    <img src="/projects/gcode_sender/0.jpg" width="90%" />
+  </div>
+  <div class="column">menu screen</div>
+</div>
+
+<div class="row">
+  <div class="column">move</div>
+  <div class="column">
+    <img src="/projects/gcode_sender/1.jpg" width="90%" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <img src="/projects/gcode_sender/2.jpg" width="90%" />
+  </div>
+  <div class="column">file explorer page 1</div>
+</div>
+
+<div class="row">
+  <div class="column">file explorer page 2</div>
+  <div class="column">
+    <img src="/projects/gcode_sender/3.jpg" width="90%" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <img src="/projects/gcode_sender/4.jpg" width="90%" />
+  </div>
+  <div class="column">menu after selecting a file</div>
+</div>

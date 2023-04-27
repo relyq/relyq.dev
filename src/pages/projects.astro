@@ -1,0 +1,21 @@
+---
+import '../styles/global.css'
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const allProjects = await Astro.glob('../pages/projects/*.md*');
+const pageTitle = "my projects";
+---
+
+<BaseLayout pageTitle = {pageTitle}>
+  <p>no project source currently</p>
+  <p>i promise i'll fix it later</p>
+  <h3>software dev & sysadmin</h3>
+  <ul>
+    {allProjects.filter((project) => !project.frontmatter.tags.includes("embedded")).map((project) => <BlogPost url={project.url} title={project.frontmatter.title}/>)}
+  </ul>
+  <h3>embedded projects</h3>
+  <ul>
+    {allProjects.filter((project) => project.frontmatter.tags.includes("embedded")).map((project) => <BlogPost url={project.url} title={project.frontmatter.title}/>)}
+  </ul>
+</BaseLayout>

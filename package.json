@@ -1,5 +1,5 @@
 {
-  "name": "astro-tutorial",
+  "name": "relyq",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,6 +10,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.0.18"
+    "@astrojs/mdx": "^0.18.2",
+    "@astrojs/preact": "^2.1.0",
+    "@astrojs/rss": "^2.3.0",
+    "astro": "^2.0.18",
+    "preact": "^10.6.5"
   }
 }

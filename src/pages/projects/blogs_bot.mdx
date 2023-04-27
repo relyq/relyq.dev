@@ -1,0 +1,80 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "discord blogs bot"
+pubDate: 2023-04-07
+description: "discord bot to let members create & manage their own text channels"
+author: "relyq"
+tags: ["projects"]
+---
+
+import "./style.css";
+
+this is a plugin i made for the [red discord bot](https://github.com/Cog-Creators/Red-DiscordBot) which is currently running on a discord server with over 1500 members
+
+red is a modular self-hosted bot made from [discord.py](https://discordpy.readthedocs.io/en/stable/) which supports plugins (cogs) to add functionality without needing to run instances of different bots
+
+on [my homelab server](/projects/homelab) i host a discord bot called lantern which runs mainly as an instance of red
+
+the purpose of this plugin is having a bot to manage "blogs", or personal channels for members of the server. it allows members with certain roles to create one or multiple text channels & manage them via the bot's interface
+
+### public commands
+
+`ltn blog set view` - view your blogs settings
+
+`ltn blog rename relyqs blog` - renames your blog - can use spaces but will be converted to dashes - result is `#relyqs-blog` \
+`ltn blog set name relyqs blog` - same thing \
+`ltn blog set topic this is relyqs blog!!` - sets your blog topic - max 1024 chars \
+`ltn blog set slowmode 60` - sets slowmode in seconds for your blog - up to 21600 (6 hrs) - 0 to disable \
+`ltn blog set nsfw` \
+`ltn blog set sfw`
+
+`ltn blog set private` - will set your blog to private so only you and ppl you're sharing your blog with can post \
+`ltn blog set public` - will set the blog to public again (syncs perms with the blog category)
+
+`ltn blog share @relyq#0001` - will share your blog ownership with @relyq#0001 - meaning they can delete messages & wont be affected by privating \
+`ltn blog unshare @relyq#0001` - will remove them from shared
+
+`ltn blog block @relyq#0001` - will block them from your blog (cant post) \
+`ltn blog unblock @relyq#0001` - will remove them from blocked
+
+`ltn blog delete` - delete your blog
+
+### server settings commands
+
+`ltn blogset view` - to check the current server settings (including roles & active blogs)
+
+`ltn blogset blogview [blog]` - to check a specific blogs settings
+
+`ltn blogset toggle [true/false]` - toggle the plugin on or off - default off
+
+`ltn blogset category [category]` - set the blogs category
+
+`ltn blogset maxchannels 99` - set the max number of blogs - default 10
+
+`ltn blogset userlimit 1` - max number of blogs per user - default 1
+
+`ltn blogset roles add [roles tags or id]` - adds one or multiple roles to the allow list \
+`ltn blogset roles remove [roles tags or id]` - removes one or multiple roles from the list \
+`ltn blogset roles set [roles tags or id]` - overwrites the list
+
+`ltn blogset rolereqmsg [message]` - set the message displayed when a user does not have any of the required roles - def: 'you dont have the required roles to create a blog'
+
+`ltn blogset log [channel]` - set channel to log name & topic changes to
+
+`ltn blogset resync` - this resyncs all the blogs perms to the category perms - do this every time you change category perms
+
+`ltn blogset clear` - reset current blogs settings
+
+## img
+
+<div>
+  <img src="/projects/blogs_bot/0.png" width="100%" />
+</div>
+
+<div>
+  <img src="/projects/blogs_bot/1.png" width="100%" />
+</div>
+
+<div>
+  <img src="/projects/blogs_bot/2.png" width="100%" />
+</div>

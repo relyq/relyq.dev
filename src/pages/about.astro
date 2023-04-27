@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const skills = ["HTML/CSS", "JavaScript", "TypeScript", "Angular", "Astro", "C#/.NET", "C / Embedded", "FreeRTOS", "SQL (MSSQL)", "Python", "Linux", "Proxmox VE"]
+
+const exploring = ["Infrastructure as Code", "Terraform", "Ansible"];
+
+const learn = ["Rust", "Haskell", "Cloud - AWS", "CI/CD - Github Actions", "Kubernetes", "Monitoring - Prometheus", "Secret Management - Vault"];
+
+const fontWeight = "bold";
+const textCase = "uppercase";
+---
+
+<BaseLayout pageTitle="about relyq">
+  <style define:vars={{fontWeight, textCase}}>
+      .skill {
+        color: navy;
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+      </style>
+
+    <p>hi!! im relyq</p>
+    <p>i like computer science, music, and games</p>
+    <p>im fluent in english & spanish (and understand a bit of italian)</p>
+    <p>i graduated highschool with an electronics degree. everything else i learned on my own</p>
+    <br>
+    <p>i started working as an embedded dev & doing some sysadmin tasks in 2020, learned desktop & web over the years, and lately i've been trying to get into devops</p>
+    <p>i'll focus on listing dev & related skills here for now</p>
+
+    <p>some things i've worked with: </p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+
+    <p>some i'm currently exploring:</p>
+    <ul>
+      {exploring.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+
+    <p>and some i'd like to learn:</p>
+    <ul>
+      {learn.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+
+  </BaseLayout>

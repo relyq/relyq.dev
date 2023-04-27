@@ -1,0 +1,128 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "touchscreen indoor grow system"
+pubDate: 2023-03-18
+description: "a device with a touchscreen interface featuring automated temperature, watering, and humidity control."
+author: "relyq"
+tags: ["projects", "electronics", "embedded"]
+---
+
+import "./style.css";
+
+this was my first serious software development project. i started the automated grow system just after getting out of highschool and by writing it i learned more about programming than i ever had before.
+
+this project made me learn about concurrency & real time operating systems.
+i learned to work with unix timestamps and date & time data.
+i also had to learn about interfacing with screens and touch panels, and it was my first experience trying to understand GUI design and related things such as MVC.
+it made me research low level programming as i had to read library source code to fix faulty screens
+
+it's main features are:
+
+- four-season program system, to emulate changing seasons after a set amount of days by setting different values for each season in the same program slot
+- dashboard shows sensor readings & season settings, as well as active season, outputs state, and date and time
+- temperature & humidity control with a min and max value, trying to keep it at around the middle by turning on fans and humidifiers
+- automated watering by either use of a soil moisture sensor and min/max moisture values, or by watering every few days.
+- program cycle control system: programs can be started on any season and manually stopped at any time, and they can be set to only run once, or to be repeated up to 99 times by setting the cycle count
+- four different program slots can be saved to non-volatile memory
+- real time clock calibration
+- soil moisture sensor calibration
+- hard reset to go back to factory settings
+
+<div class="row">
+  <div class="column">
+    <img src="/projects/grow-os/0.jpg" width="90%" />
+  </div>
+  <div class="column">dashboard with no program started</div>
+</div>
+
+<div class="row">
+  <div class="column">menu</div>
+  <div class="column">
+    <img src="/projects/grow-os/1.jpg" width="90%" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <img src="/projects/grow-os/2.jpg" width="90%" />
+  </div>
+  <div class="column">settings</div>
+</div>
+
+<div class="row">
+  <div class="column">real-time clock setting</div>
+  <div class="column">
+    <img src="/projects/grow-os/3.jpg" width="90%" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <img src="/projects/grow-os/4.jpg" width="90%" />
+  </div>
+  <div class="column">eeprom saved program slots</div>
+</div>
+
+<div class="row">
+  <div class="column">
+    you can save the current program to one of the slots or load from the eeprom
+  </div>
+  <div class="column">
+    <img src="/projects/grow-os/5.jpg" width="90%" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <img src="/projects/grow-os/6.jpg" width="90%" />
+  </div>
+  <div class="column">factory reset</div>
+</div>
+
+<div class="row">
+  <div class="column">
+    back to menu > zone 1 - four seasons & program control
+  </div>
+  <div class="column">
+    <img src="/projects/grow-os/7.jpg" width="90%" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <img src="/projects/grow-os/8.jpg" width="90%" />
+  </div>
+  <div class="column">settings for each season</div>
+</div>
+
+<div class="row">
+  <div class="column">touchscreen keypad</div>
+  <div class="column">
+    <img src="/projects/grow-os/9.jpg" width="90%" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <img src="/projects/grow-os/10.jpg" width="90%" />
+  </div>
+  <div class="column">control screen</div>
+</div>
+
+<div class="row">
+  <div class="column">you can start the program on any of the four seasons</div>
+  <div class="column">
+    <img src="/projects/grow-os/11.jpg" width="90%" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <img src="/projects/grow-os/12.jpg" width="90%" />
+  </div>
+  <div class="column">
+    dashboard after starting a program - it shows the current season (1 to 4),
+    the season settings, and the sensor readings (if the sensors were plugged
+    in)
+  </div>
+</div>

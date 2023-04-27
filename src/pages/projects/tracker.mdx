@@ -1,0 +1,56 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "issue tracker webapp"
+pubDate: 2023-03-18
+description: "JIRA-like issue tracker with multiple organizations per user and public demos"
+author: "relyq"
+tags: ["projects"]
+---
+
+import "./style.css";
+
+this is a project i started in april 2022 with the purpose of learning to make webapps using .NET
+
+it started as a .NET razor pages project which i later migrated to .NET web api + angular when i realized the limitations i had on my frontend due to trying to use razor pages
+
+it currently stores data in an SQL server db but i plan on migrating to postgreSQL in the future
+
+everything but the frontend is hosted on my [homelab server](/projects/homelab)
+
+it also runs a small python script to automate the creation of organization & example tickets via API when creating a demo org, and another API automation script every 24hr via a cronjob to clean all demo orgs
+
+aside from the fundamental issue tracker features (organizations, projects, tickets) it also lets users be part of multiple organizations using the same account and switch organizations without having to logout, and public demos that create a new organization with a shared demo user
+
+you can try it out here: https://tracker.relyq.dev/
+
+### img
+
+<div>
+  <p>project page & tickets table</p>
+  <img src="/projects/tracker/0.png" width="100%" />
+</div>
+
+<div>
+  <p>closed tickets sorted by priority</p>
+  <img src="/projects/tracker/1.png" width="100%" />
+</div>
+
+<div>
+  <p>ticket page & comments</p>
+  <img src="/projects/tracker/2.png" width="100%" />
+</div>
+
+<div>
+  <p>cards view - it has some visual issues which i plan on fixing later</p>
+  <img src="/projects/tracker/3.png" width="100%" />
+</div>
+
+<div>
+  <p>account page</p>
+  <img src="/projects/tracker/4.png" width="100%" />
+</div>
+
+<div>
+  <p>mobile view</p>
+  <img src="/projects/tracker/5.png" width="100%" />
+</div>

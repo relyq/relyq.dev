@@ -1,0 +1,63 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "1. learning ansible"
+pubDate: 2023-04-25
+description: "setting up ansible"
+author: "relyq"
+tags: ["ansible", "devops"]
+---
+
+### 14:30
+
+last sunday i learned the basics of terraform\
+i haven't really used it for much but today i want to learn ansible so i can integrate both into my IaC setup
+
+## plan
+
+0. **getting a desktop linux env**: i currently don't have a desktop linux install. i know. first step will be installing ArchWSL
+1. **installing ansible**: just `pacman -S ansible-core` and following [this article from the archwiki](https://wiki.archlinux.org/title/Ansible) (instead of [the official one](https://docs.ansible.com/ansible/latest/installation_guide/index.html) (cus im a snowflake))
+2. **configuring**: i dont think i'll do much config right away but there's info in the archwiki and [official docs](https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html)
+3. **adding hosts to the inventory**: also on the archwiki article and [official docs](https://docs.ansible.com/ansible/latest/inventory_guide/index.html)
+4. **do some tests**
+5. **???**
+6. **profit**
+
+## what's next
+
+try recreating some of my LXCs using ansible & integrating with terraform to spin them up automatically
+
+## progress
+
+### 15:49
+
+archwsl already installed with fish shell & a basic vim config. also installed ansible, copied the default conf and added some of my hosts. now to do some test automation
+
+### 16:31
+
+[this article](https://docs.ansible.com/ansible/latest/getting_started/get_started_inventory.html) is a great guide to build your inventory\
+[first playbook test](https://docs.ansible.com/ansible/latest/getting_started/get_started_playbook.html#get-started-playbook)
+
+### april 26th
+
+### 01:36
+
+well it was a busy day and dad visited to have dinner but i did end up getting an ansible playbook to deploy a minecraft server working by the end of the day \
+as of now i just copy my scripts and config files, but i plan on using templates for the config files and most importantly integrating terraform & ansible into a seamless workflow to spin up a new instance with a single line
+
+[the docs for the Ansible.Builtin modules](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html) were probably the most useful thing i read today \
+a big challenge will be getting the local ip of the new LXC after creating it with terraform. i can get the ip for VMs from the qemu agent but there's no such thing for LXCs afaik. i've already been thinking about it and it seems i'll have to write a one-liner to ssh into PVE and do lxc-info with the vmid of the LXC. \
+that will be a problem for tomorrow relyq
+
+thank u for reading!!!
+
+## img
+
+<div>
+  <p>terraform</p>
+  <img src="/blog/post-1/0.png" width="100%" />
+</div>
+
+<div>
+  <p>ansible</p>
+  <img src="/blog/post-1/1.png" width="100%" />
+</div>
