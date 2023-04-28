@@ -22,8 +22,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    outputs: 
-      abs_build_path: ${{ steps.get-build-path.outputs.ABS_BUILD_PATH }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -60,26 +58,6 @@ jobs:
         run: pnpm astro build
         working-directory: ${{ env.BUILD_PATH }}
         
-      - name: get absolute build path
-        id: get-build-path
-        shell: bash
-        run: |
-          echo "ABS_BUILD_PATH=$(pwd)" >> $GITHUB_OUTPUT
-      
-      - name: debug
-        shell: bash
-        run: ls -lash .
-
-  deploy:
-    environment:
-      name: production
-    needs: build
-    runs-on: ubuntu-latest
-    name: Deploy
-    steps:
-      - name: debug
-        shell: bash
-        run: ls -lash ${{ needs.build.outputs.abs_build_path }}/..
       - name: FTP Deploy
         id: ftp
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -91,7 +69,7 @@ jobs:
           protocol: ftp
           
           # Folder to upload from, must end with trailing slash /
-          local-dir: ${{ needs.build.outputs.abs_build_path }}/dist/
+          local-dir: ${{ env.BUILD_PATH }}/dist/
           
           # Path to upload to on the server. Must end with trailing slash /
           server-dir: public_html/
@@ -105,7 +83,7 @@ jobs:
           # An array of glob patterns, these files will not be included in the publish/delete process
           #exclude: # optional
           # How verbose should the information be - minimal, standard, or verbose
-          log-level: verbose # optional
+          #log-level: verbose # optional
           # strict or loose
           #security: # optional
           # Timeout in milliseconds for FTP operations
