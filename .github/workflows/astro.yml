@@ -67,7 +67,7 @@ jobs:
     steps:
       - name: pwd build path
         shell: bash
-        run: echo ls -lash ${{ env.BUILD_PATH }}
+        run: ls -lash ${{ env.BUILD_PATH }}
       - name: FTP Deploy
         id: ftp
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
