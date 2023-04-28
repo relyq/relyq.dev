@@ -71,4 +71,4 @@ what i've done so far:
 
 - uploaded a copy of this website to an [S3 bucket](http://relyqbucket0.s3-website-sa-east-1.amazonaws.com)
 
-i think i'm beginning to understand how everything works together. in the [next blog post](/posts/post-3) i'll try to host [my issue tracker webapp](/projects/tracker) on EC2 + RDS + lambda
+i think i'm beginning to understand how everything works together. in the [next blog post](/posts/post-4) i'll try to host [my issue tracker webapp](/projects/tracker) on EC2 + RDS + lambda
