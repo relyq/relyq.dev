@@ -65,6 +65,10 @@ jobs:
         shell: bash
         run: |
           echo "ABS_BUILD_PATH=$(pwd)" >> $GITHUB_OUTPUT
+      
+      - name: debug
+        shell: bash
+        run: ls -lash .
 
   deploy:
     environment:
@@ -73,6 +77,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
+      - name: debug
+        shell: bash
+        run: ls -lash ${{ needs.build.outputs.abs_build_path }}/..
       - name: FTP Deploy
         id: ftp
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
