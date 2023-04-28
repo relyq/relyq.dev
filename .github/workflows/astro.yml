@@ -22,6 +22,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    outputs: 
+      abs_build_path: ${{ steps.get-build-path.outputs.ABS_BUILD_PATH }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -85,7 +87,7 @@ jobs:
           protocol: ftp
           
           # Folder to upload from, must end with trailing slash /
-          local-dir: ${{ steps.get-build-path.outputs.ABS_BUILD_PATH }}/
+          local-dir: ${{ needs.build.outputs.abs_build_path }}/
           
           # Path to upload to on the server. Must end with trailing slash /
           server-dir: public_html/
