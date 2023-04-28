@@ -73,9 +73,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
-      - name: ls build path
-        shell: bash
-        run: ls -lash ${{ env.BUILD_PATH }}
       - name: FTP Deploy
         id: ftp
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -87,7 +84,7 @@ jobs:
           protocol: ftp
           
           # Folder to upload from, must end with trailing slash /
-          local-dir: ${{ needs.build.outputs.abs_build_path }}/
+          local-dir: ${{ needs.build.outputs.abs_build_path }}/dist/
           
           # Path to upload to on the server. Must end with trailing slash /
           server-dir: public_html/
