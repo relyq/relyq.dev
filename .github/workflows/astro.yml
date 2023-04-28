@@ -20,29 +20,29 @@ env:
 
 jobs:
   build:
-    name: Build
+    name: build & deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+
       - name: Setup Node
         uses: actions/setup-node@v3.6.0
         with:
           node-version: "18.16.0"
-          
+
       - name: setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
           version: 7.18.1
           run_install: false
-          
+
       - name: Get pnpm store directory
         id: pnpm-cache
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-          
+
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -50,14 +50,14 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-            
+
       - name: install dependencies
         run: pnpm install
-        
+
       - name: Build with Astro
         run: pnpm astro build
         working-directory: ${{ env.BUILD_PATH }}
-        
+
       - name: FTP Deploy
         id: ftp
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -67,13 +67,13 @@ jobs:
           password: ${{ secrets.ftp_password }}
           port: 21
           protocol: ftp
-          
+
           # Folder to upload from, must end with trailing slash /
           local-dir: ${{ env.BUILD_PATH }}/dist/
-          
+
           # Path to upload to on the server. Must end with trailing slash /
           server-dir: public_html/
-          
+
           # Path and name of the state file - this file is used to track which files have been deployed
           #state-name: # optional
           # Prints which modifications will be made with current config options, but doesnt actually make any changes
