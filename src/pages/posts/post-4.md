@@ -37,3 +37,12 @@ i think generating a script for SQL server 2017 should work just fine
 ### 07:30
 
 finally could create the db with the generated script
+
+### may 3rd
+
+### 08:20
+
+and i just deployed the webapi to an ec2 instance and everything appears to be working as intended \
+here's the aws-hosted webapp: https://aws.relyq.dev
+
+next i will terraform my infrastructure and after that i'll make a ci/cd pipeline
