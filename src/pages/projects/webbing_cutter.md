@@ -4,7 +4,8 @@ title: "webbing cutter"
 pubDate: 2023-03-18
 description: "webbing cutter/stepper motor tester"
 author: "relyq"
-tags: ["projects", "electronics", "embedded"]
+type: "project"
+tags: ["electronics", "embedded"]
 ---
 
 in november 2020 i was asked to make a firmware for a webbing cutter to make dog leashes. the frame of the machine was never finished but the controller firmware works as intended.

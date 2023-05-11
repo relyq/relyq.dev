@@ -4,7 +4,8 @@ title: "HD44780 lcd driver"
 pubDate: 2023-03-18
 description: "hd44780 lcd display library for atmega328p"
 author: "relyq"
-tags: ["projects", "electronics", "embedded"]
+type: "project"
+tags: ["electronics", "embedded"]
 ---
 
 in feb 2021 i wanted to learn more about low level microcontroller programming so i made a driver for the hd44780 lcd display controller.
