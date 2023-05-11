@@ -4,6 +4,7 @@ title: "0. learning terraform"
 pubDate: 2023-04-23
 description: "setting up terraform for proxmox"
 author: "relyq"
+type: "blog"
 tags: ["terraform", "proxmox", "devops"]
 ---
 

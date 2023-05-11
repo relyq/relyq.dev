@@ -4,6 +4,7 @@ title: "2. learning aws"
 pubDate: 2023-04-27
 description: "awsawsaws"
 author: "relyq"
+type: "blog"
 tags: ["devops", "aws"]
 ---
 

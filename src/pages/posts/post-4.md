@@ -4,6 +4,7 @@ title: "4. deploying a webapp to aws"
 pubDate: 2023-05-02
 description: "awsawsaws pt 2"
 author: "relyq"
+type: "blog"
 tags: ["devops", "aws", "ec2", "rds"]
 ---
 

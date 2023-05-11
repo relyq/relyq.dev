@@ -4,6 +4,7 @@ title: "3. detour - learning github actions - ci/cd"
 pubDate: 2023-04-28
 description: "it do be continuous"
 author: "relyq"
+type: "blog"
 tags: ["devops", "ci-cd", "github actions"]
 ---
 
