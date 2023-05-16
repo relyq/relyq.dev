@@ -15,3 +15,5 @@ i spent a week reading the atmega328p and hd44780 datasheets as well as learning
 i also had to learn about timings and pulses to communicate properly with the hardware.
 
 it supports 8 bit-11 pins, 4 bit-7 pins, and 4 bit-6 pins modes with a simple 6 methods interface to write strings to the display or send commands.
+
+## [source](https://github.com/relyq/lcd_driver)

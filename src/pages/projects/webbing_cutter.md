@@ -22,3 +22,5 @@ it uses a stepper motor to move the strip forward and a 5v servo plus a limit sw
 
 later on i was requested to modify the code to a stepper motor tester.
 this later version changes the strips/length settings to distance, feedrate, acceleration, and direction.
+
+## [source](https://github.com/relyq/webbingcutter)

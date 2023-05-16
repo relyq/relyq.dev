@@ -8,8 +8,7 @@ const pageTitle = "my projects";
 ---
 
 <BaseLayout pageTitle = {pageTitle}>
-  <p>no project source currently</p>
-  <p>i promise i'll fix it later</p>
+  <p>you can find the source for my projects & infrastructure on my <a href="https://github.com/relyq">github</a></p>
   <h3>software dev & sysadmin</h3>
   <ul>
     {allProjects.filter((project) => !project.frontmatter.tags.includes("embedded")).map((project) => <BlogPost url={project.url} title={project.frontmatter.title}/>)}
