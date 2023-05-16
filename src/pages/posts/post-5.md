@@ -41,8 +41,13 @@ AWS, TERRAFORM, CLOUD-INIT, & ANSIBLE
 https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build \
 https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance \
 https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/config \
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret \
 https://cloudinit.readthedocs.io/en/latest/reference/examples.html \
-https://cloudinit.readthedocs.io/en/latest/reference/modules.html
+https://cloudinit.readthedocs.io/en/latest/reference/modules.html \
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
+
+about terraform secrets \
+https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1
 
 ## code
 
