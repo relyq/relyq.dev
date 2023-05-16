@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: "5. cicd with aws & github actions"
+title: "6. cicd with aws & github actions"
 pubDate: 2023-05-15
 description: "github actions + aws"
 author: "relyq"
