@@ -34,4 +34,16 @@ my terraform code consists of the following parts
 
 terraform will set up my ec2 instances (one for my frontend and one for my api) with their networking settings, add new A records pointing to the new instances ip addresses, and cloud-init will deploy my certificate to both instances and download my latest builds from github actions
 
+## code
+
 you can check my terraform code on github: https://github.com/relyq/infrastructure
+
+## extras
+
+im not using this anymore as im now uploading my artifacts to an S3 bucket instead of github actions, but i wrote this one liner to get the artifact URL from github using gh-cli and some regex magic (which i definitely wrote myself heh)
+
+`export ARTIFACT_URL=$(gh run list --json url -L 1 -R relyq/Tracker_angular | grep -o '".*"' | sed 's/"//g; s/^url://')`
+
+this lets me then download the artifact using some bash parameter substring removal
+
+`gh run download ${ARTIFACT_URL##*/} -R relyq/Tracker_angular`
