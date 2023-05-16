@@ -16,6 +16,10 @@ spent a few hours learning a bit of ci/cd before deploying a webapp to aws as i 
 took a bit to figure each job ran on its own instance so they didnt share artifacts but now updates to this site are deployed automatically \
 the repo might not be public yet but here's the workflow file: https://github.com/relyq/relyq.dev/blob/master/.github/workflows/astro.yml
 
+## useful docs
+
+https://docs.github.com/en/actions/learn-github-actions
+
 ## code
 
 ```

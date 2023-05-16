@@ -34,6 +34,16 @@ my terraform code consists of the following parts
 
 terraform will set up my ec2 instances (one for my frontend and one for my api) with their networking settings, add new A records pointing to the new instances ip addresses, and cloud-init will deploy my certificate to both instances and download my latest builds from github actions
 
+## useful docs
+
+AWS, TERRAFORM, CLOUD-INIT, & ANSIBLE
+
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build \
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance \
+https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/config \
+https://cloudinit.readthedocs.io/en/latest/reference/examples.html \
+https://cloudinit.readthedocs.io/en/latest/reference/modules.html
+
 ## code
 
 you can check my terraform code on github: https://github.com/relyq/infrastructure
