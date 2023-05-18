@@ -13,10 +13,14 @@ html.dark {
 }
 
 .dark a {
-  color: crimson;
+  color: palevioletred;
 }
 
 .dark footer > a {
+  color: white;
+}
+
+.dark .tag a {
   color: white;
 }
 
