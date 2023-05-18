@@ -12,6 +12,14 @@ html.dark {
   color: #fff;
 }
 
+.dark a {
+  color: crimson;
+}
+
+.dark footer > a {
+  color: white;
+}
+
 .dark .skill {
   color: #fec8d8;
   font-weight: var(--fontWeight);
