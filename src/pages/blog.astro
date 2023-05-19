@@ -8,7 +8,6 @@ const pageTitle = "relyq's blog";
 ---
 
 <BaseLayout pageTitle = {pageTitle}>
-  <p>hi</p>
   <ul>
     {allPosts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
   </ul>
