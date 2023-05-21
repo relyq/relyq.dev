@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "home page";
+
+const project_left = await Astro.glob('./projects/tracker.mdx')
+const project_right = await Astro.glob('./projects/aws.mdx')
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -13,11 +16,11 @@ const pageTitle = "home page";
   <h2>featured projects</h2>
   <div class="row">
     <div class="column">
-      <h3><a href="/projects/tracker">issue tracker webapp</a></h3>
+      <h3><a href={project_left[0].url}>{project_left[0].frontmatter.title}</a></h3>
       <a href="/projects/tracker"><img src="/projects/tracker/0.png" width="95%" /></a>
     </div>
     <div class="column right">
-      <h3><a href="/projects/aws">deploying a webapp to AWS + terraform</a></h3>
+      <h3><a href={project_right[0].url}>{project_right[0].frontmatter.title}</a></h3>
       <a href="/projects/aws"><img src="/projects/aws/0.png" width="95%" /></a>
     </div>
   </div>
