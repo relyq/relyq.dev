@@ -23,6 +23,11 @@ tags: ["devops", "aws", "terraform", "cicd"]
    2.1 [github actions](#github-actions) \
    2.2 [lambdas](#lambdas) \
    2.3 [codedeploy](#codedeploy)
+3. [dockerizing](#dockerizing) \
+   3.1 [dockerfiles](#dockerfiles) \
+   3.2 [docker compose](#docker-compose) \
+   3.3 [terraforming with docker](#terraforming-with-docker) \
+   3.4 [CI/CD with docker](#cicd-with-docker)
 
 # intro
 
@@ -71,7 +76,7 @@ cicd
 
 ## ec2 instances
 
-first thing did was create two EC2 t2.micro instances for my angular frontend and dotnet API. on <a href="/projects/homelab" target="_blank" rel="noopener noreferrer">my homelab server</a> i always use debian 11, however, i used amazon linux 2023 this time just to try amazon's distro - its also supposed to be optimized for the cloud so it should have better performance
+first thing i did was create two EC2 t2.micro instances for my angular frontend and dotnet API. on <a href="/projects/homelab" target="_blank" rel="noopener noreferrer">my homelab server</a> i always use debian 11, however, i used amazon linux 2023 this time just to try amazon's distro - its also supposed to be optimized for the cloud so it should have better performance
 
 im also terraforming my networking resources (vpc, subnet, security groups), but i won't go into much detail about it here. it's all available in my infrastructure repo if you want to take a look
 
@@ -578,4 +583,177 @@ systemctl start tracker
 
 #!/bin/bash
 systemctl stop tracker
+```
+
+# dockerizing
+
+installing the services directly on the host is a nice thing to know, however thats just not the way things work. deploying the app as separate docker containers running each service makes things consistent and makes it easier to run the app on a single instance which makes things cheaper & enables me to keep it running 24/7 while staying in the free tier
+
+## dockerfiles
+
+after learning iac writing dockerfiles is more or less trivial. here are the dockerfiles for both containers
+
+for the dotnet container i compile the api using microsoft's dotnet sdk image, then run it on the asp.net runtime image
+
+```
+# syntax=docker/dockerfile:1
+FROM mcr.microsoft.com/dotnet/sdk:6.0 as build
+WORKDIR /src
+COPY . .
+RUN dotnet restore
+RUN dotnet publish -o /publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
+RUN apt-get update && apt-get install -y python3
+WORKDIR /publish
+COPY --from=build /publish .
+RUN chmod +x scripts/*
+EXPOSE 7004
+ENTRYPOINT ["dotnet", "Tracker.dll"]
+```
+
+and for the angular frontend i build it with node and run it on an nginx image. i have the nginx.conf file on the repo and i copy it to the container here
+
+```
+# syntax=docker/dockerfile:1
+FROM node:latest as node
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build --prod
+
+FROM nginx:alpine
+COPY --from=node /app/dist/tracker /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
+EXPOSE 80
+EXPOSE 443
+```
+
+## docker compose
+
+i orchestrate my containers with a simple docker compose file
+
+there's not much to say about this - the most important thing here is setting up the bind mount for the ssl certificate & the environment variables
+
+```
+version: "3.9"
+services:
+  nginx:
+    image: "relyq/tracker-nginx:master"
+    volumes:
+      - "${TRACKER_CERT_PATH}:/etc/ssl/"
+    ports:
+      - "80:80"
+      - "443:443"
+  api:
+    image: "relyq/tracker-dotnet:master"
+    ports:
+      - "7004:7004"
+    volumes:
+      - "${TRACKER_CERT_PATH}:/etc/ssl/"
+    environment:
+      - ASPNETCORE_URLS=https://+:7004
+      - ASPNETCORE_HTTPS_PORT=7004
+      - ASPNETCORE_CONTENTROOT=/publish
+      - ASPNETCORE_ENVIRONMENT
+      - Secrets__SQLConnection
+      - Jwt__Key
+      - Secrets__SMTPPassword
+      - Tracker__BaseUrl
+```
+
+## terraforming with docker
+
+i also had to update my terraform code as i was getting my artifacts from an S3 bucket & running my services natively before.
+
+the main change is the removal of all the code to build or pull the artifacts and now the two services are combined into a single instance that just has to pull the docker images from duckerhub and run docker compose
+
+i can pull the images implicitly as docker compose will automatically take care of that by itself. other than this i get my `docker-compose.yml` and `docker_update.sh` files from my S3 bucket
+
+```
+#cloud-config
+users:
+  - default
+  - name: tracker
+    homedir: /opt/tracker
+    shell: /bin/bash
+    ssh_redirect_user: true
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+packages:
+  - cronie
+  - docker
+
+runcmd:
+  - mkdir -p /usr/local/lib/docker/cli-plugins/
+  - curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o /usr/local/lib/docker/cli-plugins/docker-compose
+  - chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+  - aws s3 cp s3://relyq-tracker-bucket/docker-compose.yml /opt/tracker/docker-compose.yml
+  - aws s3 cp s3://relyq-tracker-bucket/docker_update.sh /opt/tracker/docker_update.sh
+  - chmod +x /opt/tracker/docker_update.sh
+  - source /root/.tracker.env
+  - systemctl start docker
+  - docker compose -f /opt/tracker/docker-compose.yml up -d
+```
+
+## CI/CD with docker
+
+now all my build code has been moved to my two dockerfiles, and the github actions workflows look the same for both services as now its only job is to build the images and push them to dockerhub. once done i send an update command via SSH which runs my update script
+
+```
+name: docker
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+  workflow_dispatch:
+
+jobs:
+  push_docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: relyq/tracker-dotnet
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: pull image & restart containers
+        run: |
+          eval `ssh-agent -s` &&
+          ssh-add - <<< "${{ secrets.SSH_KEY }}" &&
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_HOST }} "sudo /opt/tracker/docker_update.sh"
+```
+
+here's the update script - it just sources the env, pulls the images, and restarts docker compose
+
+```
+#!/bin/bash
+ENV_FILE_PATH=/root/.tracker.env
+docker pull relyq/tracker-nginx:master
+docker pull relyq/tracker-dotnet:master
+source "$ENV_FILE_PATH"
+docker compose -f /opt/tracker/docker-compose.yml up --force-recreate --build -d
 ```
