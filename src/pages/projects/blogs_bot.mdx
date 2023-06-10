@@ -38,6 +38,11 @@ the purpose of this plugin is having a bot to manage "blogs", or personal channe
 `ltn blog block @relyq#0001` - will block them from your blog (cant post) \
 `ltn blog unblock @relyq#0001` - will remove them from blocked
 
+`ltn blog thread create screenshots` - create a thread on your blog
+`ltn blog thread delete` - delete this thread
+`ltn blog thread rename screencaps` - rename this thread
+`ltn blog thread slowmode 60` - set thread slowmode
+
 `ltn blog delete` - delete your blog
 
 ### server settings commands
@@ -61,6 +66,10 @@ the purpose of this plugin is having a bot to manage "blogs", or personal channe
 `ltn blogset rolereqmsg [message]` - set the message displayed when a user does not have any of the required roles - def: 'you dont have the required roles to create a blog'
 
 `ltn blogset log [channel]` - set channel to log name & topic changes to
+
+`ltn blogset max_threads [number]` set the maximum number of threads users can create on their blog - def: 0
+
+`ltn blogset thread_duration [number]` set the time in minutes before a thread is archived. can be any of 60 (hour), 1440 (day), 4320 (3 days), 10000 (week) - def: 4320
 
 `ltn blogset resync` - this resyncs all the blogs perms to the category perms - do this every time you change category perms
 
