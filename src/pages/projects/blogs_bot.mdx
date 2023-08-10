@@ -18,66 +18,7 @@ the purpose of this plugin is having a bot to manage "blogs", or personal channe
 
 ## <a href="https://github.com/relyq/relyq-cogs/blob/master/blogs/blogs.py" target="_blank" rel="noopener noreferrer">source</a>
 
-### public commands
-
-`ltn blog create relyqs blog` - create your blog - result is new blog with name `#relyqs-blog`
-
-`ltn blog set view` - view your blogs settings
-
-`ltn blog rename relyqs blog` - renames your blog - can use spaces but will be converted to dashes - result is `#relyqs-blog` \
-`ltn blog set name relyqs blog` - same thing \
-`ltn blog set topic this is relyqs blog!!` - sets your blog topic - max 1024 chars \
-`ltn blog set slowmode 60` - sets slowmode in seconds for your blog - up to 21600 (6 hrs) - 0 to disable \
-`ltn blog set nsfw` \
-`ltn blog set sfw`
-
-`ltn blog set private` - will set your blog to private so only you and ppl you're sharing your blog with can post \
-`ltn blog set public` - will set the blog to public again (syncs perms with the blog category)
-
-`ltn blog share @relyq#0001` - will share your blog ownership with @relyq#0001 - meaning they can delete messages & wont be affected by privating \
-`ltn blog unshare @relyq#0001` - will remove them from shared
-
-`ltn blog block @relyq#0001` - will block them from your blog (cant post) \
-`ltn blog unblock @relyq#0001` - will remove them from blocked
-
-`ltn blog thread create screenshots` - create a thread on your blog \
-`ltn blog thread delete` - delete this thread \
-`ltn blog thread rename screencaps` - rename this thread \
-`ltn blog thread slowmode 60` - set thread slowmode \
-
-`ltn blog delete` - delete your blog
-
-### server settings commands
-
-`ltn blogset view` - to check the current server settings (including roles & active blogs)
-
-`ltn blogset blogview [blog]` - to check a specific blogs settings
-
-`ltn blogset toggle [true/false]` - toggle the plugin on or off - default off
-
-`ltn blogset category [category]` - set the blogs category
-
-`ltn blogset maxchannels 99` - set the max number of blogs - default 10
-
-`ltn blogset userlimit 1` - max number of blogs per user - default 1
-
-`ltn blogset roles add [roles tags or id]` - adds one or multiple roles to the allow list \
-`ltn blogset roles remove [roles tags or id]` - removes one or multiple roles from the list \
-`ltn blogset roles set [roles tags or id]` - overwrites the list
-
-`ltn blogset rolereqmsg [message]` - set the message displayed when a user does not have any of the required roles - def: 'you dont have the required roles to create a blog'
-
-`ltn blogset log [channel]` - set channel to log name & topic changes to
-
-`ltn blogset max_threads [number]` set the maximum number of threads users can create on their blog - def: 0
-
-`ltn blogset thread_duration [number]` set the time in minutes before a thread is archived. can be any of 60 (hour), 1440 (day), 4320 (3 days), 10000 (week) - def: 4320
-
-`ltn blogset resync` - this resyncs all the blogs perms to the category perms - do this every time you change category perms
-
-`ltn blogset chown [user tag or id]` change ownership of the blog the cmd was sent in
-
-`ltn blogset clear` - reset current blogs settings
+## <a href="/lantern/blogs">documentation</a>
 
 ## img
 

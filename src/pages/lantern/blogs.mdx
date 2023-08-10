@@ -1,0 +1,178 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "lantern blogs documentation"
+pubDate: 2023-04-07
+description: "discord bot to let members create & manage their own text channels"
+author: "relyq"
+type: "documentation"
+tags: ["lantern"]
+---
+
+# public commands
+
+## !!! all public commands other than create must be used in your blog !!!
+
+- ### `ltn blog create relyqs blog`
+
+  create your blog - result is new blog with name `#relyqs-blog`
+
+- ### `ltn blog delete`
+  delete your blog
+
+## blog settings
+
+<div>
+  <img src="/lantern/blogs/blog_settings.png" width="70%" />
+</div>
+
+- ### `ltn blog set view`
+
+  view your blogs settings
+
+- ### `ltn blog rename relyqs blog`
+
+  renames your blog - can use spaces but will be converted to dashes - result is `#relyqs-blog`
+
+- ### `ltn blog set name relyqs blog`
+
+  same thing
+
+- ### `ltn blog set topic this is relyqs blog!!`
+
+  sets your blog topic - max 1024 chars
+
+- ### `ltn blog set slowmode 60`
+
+  sets slowmode in seconds for your blog - up to 21600 (6 hrs) - 0 to disable
+
+- ### `ltn blog set nsfw`
+
+  sets to nsfw
+
+- ### `ltn blog set sfw`
+
+  sets to sfw
+
+- ### `ltn blog set private`
+
+  will set your blog to private so only you and ppl you're sharing your blog with can post
+
+- ### `ltn blog set public`
+
+  will set the blog to public again (syncs perms with the blog category)
+
+## user management
+
+- ### `ltn blog share @relyq#0001`
+
+  will share your blog ownership with @relyq#0001 - meaning they can delete messages & wont be affected by privating
+
+- ### `ltn blog unshare @relyq#0001`
+
+  will remove them from shared
+
+- ### `ltn blog block @relyq#0001`
+
+  will block them from your blog (cant post)
+
+- ### `ltn blog unblock @relyq#0001`
+
+  will remove them from blocked
+
+- ### `ltn blog hide @relyq#0001`
+
+  will hide your blog for this user so they can't see it
+
+- ### `ltn blog unhide @relyq#0001`
+
+  will unhide the blog for this user
+
+## threads
+
+- ### `ltn blog thread create screenshots`
+
+  create a thread on your blog
+
+- ### `ltn blog thread delete`
+
+  delete this thread
+
+- ### `ltn blog thread rename screencaps`
+
+  rename this thread
+
+- ### `ltn blog thread slowmode 60`
+
+  set thread slowmode
+
+# server settings commands
+
+<div>
+  <img src="/lantern/blogs/settings.png" width="80%" />
+</div>
+
+- ### `ltn blogset view`
+
+  to check the current server settings (including roles & active blogs)
+
+- ### `ltn blogset blogview [blog mention]`
+
+  to check a specific blogs settings
+
+- ### `ltn blogset enable`
+
+  toggle the plugin on
+
+- ### `ltn blogset disable`
+
+  toggle the plugin off
+
+- ### `ltn blogset category [category name]`
+
+  set the category where blogs will be created
+
+- ### `ltn blogset maxchannels 99`
+
+  set the max number of blogs - default 10
+
+- ### `ltn blogset userlimit 1`
+
+  max number of blogs per user - default 1
+
+- ### `ltn blogset roles add [roles mention]`
+
+  adds one or multiple roles to the allow list
+
+- ### `ltn blogset roles remove [roles mention]`
+
+  removes one or multiple roles from the list
+
+- ### `ltn blogset roles set [roles mention]`
+
+  overwrites the list
+
+- ### `ltn blogset rolereqmsg [message]`
+
+  set the message displayed when a user does not have any of the required roles - def: 'you dont have the required roles to create a blog'
+
+- ### `ltn blogset log [channel mention]`
+
+  set channel to log name & topic changes to
+
+- ### `ltn blogset max_threads [number]`
+
+  set the maximum number of threads users can create on their blog - def: 0
+
+- ### `ltn blogset thread_duration [number]`
+
+  set the time in minutes before a thread is archived. can be any of 60 (hour), 1440 (day), 4320 (3 days), 10000 (week) - def: 4320
+
+## management commands
+
+- ### `ltn blogset resync`
+
+  this resyncs all the blogs perms to the category perms - do this every time you change category perms
+
+- ### `ltn blogset chown [user mention]`
+
+  change ownership of the blog the cmd was sent in

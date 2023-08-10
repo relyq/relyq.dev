@@ -1,0 +1,156 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "lantern channel scores documentation"
+pubDate: 2023-08-10
+description: "discord channel scores & channel sync to scoreboard"
+author: "relyq"
+type: "documentation"
+tags: ["lantern"]
+---
+
+# usage
+
+tracked channels can win and lose points
+
+untracked channels cant win points
+
+pinned channels won't move if sync is enabled
+
+turning on sync will sync the channel list to the scoreboard for the tracked channels
+
+volumes are a way to keep sync going across multiple categories
+
+# public commands
+
+- ### `ltn top`
+
+  view scoreboard
+
+- ### `ltn rank [channel mention]`
+
+  view rank & info for a channel - no mention to view this channel's rank
+
+<div>
+  <img src="/lantern/channel_scores/top.png" width="60%" />
+</div>
+
+<div>
+  <img src="/lantern/channel_scores/rank.png" width="60%" />
+</div>
+
+# channel management commands
+
+- ### `ltn score track [one or more channel mention or category]`
+
+  tracks channels or categories \
+  if the channels/categories aren't in the scoreboard it will add them
+
+- ### `ltn score untrack [one or more channel mention or category]`
+
+  untracks channels or categories so they won't win points \
+  this won't remove them from the scoreboard (see `ltn score forget`)
+
+- ### `ltn score reset [one or more channel mention or category]`
+
+  resets the channels or categories score to 0
+
+- ### `ltn score forget [one or more channel mention or category]`
+
+  makes the bot forget about these channels or categories - removes them from the scoreboard
+
+- ### `ltn score pin [one or more channel mention]`
+
+  pins one or more channels so they dont move if sync is enabled
+
+- ### `ltn score unpin [one or more channel mention]`
+
+  unpins the channels
+
+- ### `ltn score resync`
+  triggers a manual channel resync to scoreboard
+
+# volume management
+
+- ### `ltn score link [categories]`
+
+  creates a volume by linking the categories **in order - top to bottom** \
+  example: \
+  `ltn score link a b c d` will result in volume a -> b -> c -> d
+
+- ### `ltn score unlink [categories]`
+
+  unlinks the categories - keeps other links intact by healing volumes
+  example: \
+  `ltn score unlink b` will result in volumes a -> c -> d, b
+
+- ### `ltn score thresholds [volume id] [score thresholds]`
+  if volume mode is set to by score:\
+  the number of points needed for a channel to be in a category - top category wont have a threshold
+  the number of thresholds must be [total categories - 1] (top category wont have a threshold)
+
+<div>
+  <img src="/lantern/channel_scores/linking.png" width="75%" />
+</div>
+
+# server settings commands
+
+<div>
+  <img src="/lantern/channel_scores/settings.png" width="75%" />
+</div>
+
+- ### `ltn score set view`
+
+  view server settings
+
+- ### `ltn score set enable`
+
+  enables channel scores
+
+- ### `ltn score set disable`
+
+  disables channel scores
+
+- ### `ltn score set log [channel mention]`
+
+  sets the log channel
+
+- ### `ltn score set cooldown [minutes]`
+
+  sets the score cooldown - channels will have to wait [cooldown time] to get another point
+
+- ### `ltn score set grace [minutes]`
+
+  the amount of time a channel can be inactive without losing points \
+  first point will be lost after [grace time x 2] of inactivity \
+  after this, one point will be lost every [grace time] of inactivity
+
+- ### `ltn score set range [1 to 5]`
+
+  sets the max number of points to [total channels x range] - 'range 2' with 10 channels results in 0 - 20 range - def: 1
+
+- ### `ltn score sync enable`
+
+  turn on channel sync - channels will move to sync to the scoreboard
+
+- ### `ltn score sync enable`
+
+  turn off channel sync
+
+- ### `ltn score volume_mode [fixed/score]`
+  sets the channels per category to fixed or by score \
+  fixed - fixed to the number of channels already in that category
+  score - you can set up a points threshold for each category (see `ltn score thresholds`)
+
+# extras
+
+## points abuse detection
+
+lantern will notify you if a message is deleted less than a minute before posting on a tracked channel
+
+no action will be taken automatically as some of these might be false positives, e.g. a post doesn't look like you want it to
+
+you can punish abuse by `ltn score untrack`'ing channels so they can't win points - which will make them slowly sink down
+
+<div>
+  <img src="/lantern/channel_scores/points_abuse_detection.png" width="60%" />
+</div>
