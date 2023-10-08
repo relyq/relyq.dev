@@ -9,8 +9,7 @@ hit me up on discord @relyq
 
 looking for an alt girl to get obsessed over
 
-kinda given up \
-tbh this app is just my personal blog at this point
+kinda given up
 
 chronically online
 
