@@ -7,8 +7,6 @@ pubDate: 2024-10-08
 highly organized \
 hit me up on discord @relyq
 
-looking for an alt girl to get obsessed over
-
 kinda given up
 
 chronically online
