@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/BaseLayout.astro
 title: "bio"
+pubDate: 2024-10-08
 ---
 
 highly organized \
