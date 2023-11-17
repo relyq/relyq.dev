@@ -79,13 +79,13 @@ volumes are a way to keep sync going across multiple categories
 
 - ### `ltn score unlink [categories]`
 
-  unlinks the categories - keeps other links intact by healing volumes
+  unlinks the categories - keeps other links intact by healing volumes \
   example: \
   `ltn score unlink b` will result in volumes a -> c -> d, b
 
 - ### `ltn score thresholds [volume id] [score thresholds]`
   if volume mode is set to by score:\
-  the number of points needed for a channel to be in a category - top category wont have a threshold
+  the number of points needed for a channel to be in a category - top category wont have a threshold \
   the number of thresholds must be [total categories - 1] (top category wont have a threshold)
 
 <div>
@@ -138,7 +138,7 @@ volumes are a way to keep sync going across multiple categories
 
 - ### `ltn score volume_mode [fixed/score]`
   sets the channels per category to fixed or by score \
-  fixed - fixed to the number of channels already in that category
+  fixed - fixed to the number of channels already in that category \
   score - you can set up a points threshold for each category (see `ltn score thresholds`)
 
 # extras
