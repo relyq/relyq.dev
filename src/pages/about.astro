@@ -2,11 +2,13 @@
 import '../styles/global.css';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const skills = ["HTML/CSS", "JavaScript", "TypeScript", "Angular", "Astro", "C#/.NET", "C / Embedded", "FreeRTOS", "SQL (MSSQL)", "Python", "Linux", "Proxmox VE"]
+const skills_dev = ["HTML/CSS", "JavaScript", "TypeScript", "Angular", "Astro", "C#/.NET", "C / Embedded", "FreeRTOS", "SQL", "Python"];
 
-const exploring = ["Infrastructure as Code", "Terraform", "Ansible", "CI/CD - Github Actions", "Docker", "Cloud - AWS"];
+const skills_devops = ["Linux", "Proxmox VE","Docker", "AWS", "Terraform", "Ansible", "Github Actions", "Grafana", "Prometheus", "Traefik"];
 
-const learn = ["Rust", "Haskell", "Kubernetes", "Jenkins", "Monitoring - Prometheus", "Grafana", "Elastic Stack", "Secret Management - Hashicorp Vault", "Tracing - Jaeger", "Clusters & High Availability"];
+const exploring = ["Hashicorp Vault", "Elastic Stack", "Jaeger"];
+
+const learn = ["Kubernetes", "Rust", "Haskell", "Jenkins"];
 
 const fontWeight = "bold";
 const textCase = "uppercase";
@@ -22,9 +24,14 @@ const textCase = "uppercase";
     <p>i started working as an <span class="highlight">embedded dev</span> & doing some <span class="highlight"></span>sysadmin</span> tasks in 2020, learned <span class="highlight">web dev</span> over the years, and lately i've been trying to get into <span class="highlight">devops</span> too</p>
     <p>i'll focus on listing dev & related skills here for now</p>
 
-    <p>some things i've worked with: </p>
+    <p>some dev stuff i work with: </p>
     <ul>
-      {skills.map((skill) => <li class="skill">{skill}</li>)}
+      {skills_dev.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+
+    <p>some devops stuff i work with: </p>
+    <ul>
+      {skills_devops.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
 
     <p>some i'm currently exploring:</p>
