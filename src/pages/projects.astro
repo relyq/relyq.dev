@@ -9,7 +9,7 @@ const pageTitle = "my projects";
 
 <BaseLayout pageTitle = {pageTitle}>
   <p>you can find the source for my projects & infrastructure on my <a href="https://github.com/relyq" target="_blank" rel="noopener noreferrer">github</a></p>
-  <h3>devops & sysadmin</h3>
+  <h3>infrastructure</h3>
   <ul>
     {allProjects.filter((project) => project.frontmatter.tags.includes("devops") || project.frontmatter.tags.includes("sysadmin")).map((project) => <BlogPost url={project.url} title={project.frontmatter.title}/>)}
   </ul>

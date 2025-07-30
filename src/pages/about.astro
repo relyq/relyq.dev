@@ -2,13 +2,13 @@
 import '../styles/global.css';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const skills_dev = ["HTML/CSS", "JavaScript", "TypeScript", "Angular", "Astro", "C#/.NET", "C / Embedded", "FreeRTOS", "SQL", "Python"];
+const skills_dev = ["Angular", "Astro", "C# (.NET)", "C - Embedded (Arduino, ESP32, Raspberry Pi)", "FreeRTOS", "SQL", "Python"];
 
-const skills_devops = ["Linux", "Proxmox VE","Docker", "AWS", "Terraform", "Ansible", "Github Actions", "Grafana", "Prometheus", "Traefik"];
+const skills_infra = ["Linux (arch btw)", "Proxmox VE", "Docker", "Kubernetes (K3s)", "AWS", "Terraform", "Ansible", "Github Actions", "Grafana stack", "Prometheus", "Traefik", "Keycloak", "Hashicorp Vault", "Wireguard/Netbird"];
 
-const exploring = ["Hashicorp Vault", "Elastic Stack", "Jaeger"];
+const exploring = ["Elastic Stack", "Jaeger/Tempo"];
 
-const learn = ["Kubernetes", "Rust", "Haskell", "Jenkins"];
+const learn = ["Rust", "Haskell"];
 
 const fontWeight = "bold";
 const textCase = "uppercase";
@@ -17,11 +17,11 @@ const textCase = "uppercase";
 <BaseLayout pageTitle="about relyq">
 
     <p>hi!! im relyq</p>
-    <p>i like computer science, music, and games</p>
+    <p>i like computer science, music, fencing (épée), and videogames</p>
     <p>im fluent in <span class="highlight">english</span> & <span class="highlight">spanish</span> (and understand a bit of italian) - i like human languages too</p>
-    <p>i graduated highschool with an <span class="highlight">electronics degree</span>. everything else i learned on my own</p>
+    <p>i graduated highschool with an <span class="highlight">electronics & embedded software degree</span>. everything else i learned on my own</p>
     <br>
-    <p>i started working as an <span class="highlight">embedded dev</span> & doing some <span class="highlight"></span>sysadmin</span> tasks in 2020, learned <span class="highlight">web dev</span> over the years, and lately i've been trying to get into <span class="highlight">devops</span> too</p>
+    <p>i started working as an <span class="highlight">embedded dev</span> & doing some <span class="highlight">sysadmin</span> tasks in 2020, learned <span class="highlight">web dev</span> over the years, and lately i've been working in <span class="highlight">infrastructure</span> too</p>
     <p>i'll focus on listing dev & related skills here for now</p>
 
     <p>some dev stuff i work with: </p>
@@ -29,9 +29,9 @@ const textCase = "uppercase";
       {skills_dev.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
 
-    <p>some devops stuff i work with: </p>
+    <p>some infrastructure stuff i work with: </p>
     <ul>
-      {skills_devops.map((skill) => <li class="skill">{skill}</li>)}
+      {skills_infra.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
 
     <p>some i'm currently exploring:</p>
